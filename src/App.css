@@ -46,8 +46,8 @@ h3 {
 .todo-row {
   padding: 10px;
   margin: 10px;
-  border: 6px solid black;
-  color: black;
+  border: 6px solid cornflowerblue;
+  color: darkmagenta;
   display: flex;
   justify-content: space-between;
 }

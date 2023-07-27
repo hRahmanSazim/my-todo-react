@@ -20,9 +20,11 @@ function App() {
     setTodos(newTodos);
     console.log(newTodos);
   };
-  // const removeTodo = (id) => {
-  //   let updatedTodos = [...todos].filter((todo) => todo.id !== id);
-  // };
+
+  const removeTodo = (id) => {
+    let updatedTodos = [...todos].filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
+  };
 
   return (
     <>
@@ -32,7 +34,7 @@ function App() {
       <h3> Add tasks below:</h3>
       <TodoForm addTodo={addTodo} />
       {todos.map((todo) => {
-        return <ToDo todo={todo} key={todo.id} />;
+        return <ToDo removeTodo={removeTodo} todo={todo} key={todo.id} />;
       })}
     </>
   );
