@@ -1,32 +1,12 @@
-import { useState } from "react";
+import React from "react";
 
-function Todo() {
-  const [input, setInput] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setInput("");
-  };
-
+export default function ToDo(props) {
   return (
-    <>
-      <div className="todo-wrapper">
-        <form onSubmit={handleSubmit} className="todos">
-          <label htmlFor="text">
-            <h1>Add tasks here: </h1>
-          </label>
-          <input
-            onChange={(e) => setInput(e.target.value)}
-            type="text"
-            placeholder="Add a todo..."
-          />
-          <button type="submit" className="add-btn">
-            Add
-          </button>
-        </form>
-      </div>
-    </>
+    <div className="todo-row">
+      <div>{props.todo.task}</div>
+      {/* <button onClick={props.removeTodo(props.todo.id)} className="delete-btn">
+        Delete
+      </button> */}
+    </div>
   );
 }
-
-export default Todo;
