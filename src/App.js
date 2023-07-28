@@ -2,7 +2,7 @@ import TodoForm from "./Components/TodoForm";
 import "./App.css";
 import { useState } from "react";
 import ToDo from "./Components/ToDo";
-import { Button, MantineProvider, Text } from "@mantine/core";
+import { MantineProvider } from "@mantine/core";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -40,7 +40,6 @@ function App() {
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
       <>
-        <Text>Welcome to mantine</Text>
         <h1>
           <u>MY TODO</u>
         </h1>
