@@ -2,6 +2,7 @@ import TodoForm from "./Components/TodoForm";
 import "./App.css";
 import { useState } from "react";
 import ToDo from "./Components/ToDo";
+import { MantineProvider, Text } from "@mantine/core";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -35,23 +36,26 @@ function App() {
     setTodos(updatedTodos);
   };
   return (
-    <>
-      <h1>
-        <u>MY TODO</u>
-      </h1>
-      <h3> Add tasks below:</h3>
-      <TodoForm addTodo={addTodo} />
-      {todos.map((todo) => {
-        return (
-          <ToDo
-            completeTodo={completeTodo}
-            removeTodo={removeTodo}
-            todo={todo}
-            key={todo.id}
-          />
-        );
-      })}
-    </>
+    <MantineProvider withGlobalStyles with withNormalizeCSS>
+      <>
+        <Text>Welcome to mantine</Text>
+        <h1>
+          <u>MY TODO</u>
+        </h1>
+        <h3> Add tasks below:</h3>
+        <TodoForm addTodo={addTodo} />
+        {todos.map((todo) => {
+          return (
+            <ToDo
+              completeTodo={completeTodo}
+              removeTodo={removeTodo}
+              todo={todo}
+              key={todo.id}
+            />
+          );
+        })}
+      </>
+    </MantineProvider>
   );
 }
 
