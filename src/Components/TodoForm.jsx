@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Box, Input, Button, Text } from "@mantine/core";
 
 export default function TodoForm(props) {
   const [value, setValue] = useState("");
@@ -11,19 +12,17 @@ export default function TodoForm(props) {
 
   return (
     <>
-      <div className="todo-elements">
-        <form onSubmit={handleSubmit} className="todo-input">
-          <input
+      <Box>
+        <form onSubmit={handleSubmit}>
+          <Input
             className="input-field"
             onChange={(e) => setValue(e.target.value)}
             value={value}
             placeholder="Add a todo..."
           />
-          <button type="submit" className="add-btn">
-            Add
-          </button>
+          <Button type="submit">Add</Button>
         </form>
-      </div>
+      </Box>
     </>
   );
 }
