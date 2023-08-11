@@ -1,6 +1,6 @@
-import { Text, Flex, Button, Container, Space } from "@mantine/core";
+import { Text, Flex, Button, Container, Space, Group } from "@mantine/core";
 
-const Todo = ({ todo, removeTodo, editTodo }) => {
+const Todo = ({ todo, removeTodo, editTodo, completedTodo }) => {
   return (
     <Flex direction="row">
       <Container>
@@ -11,15 +11,18 @@ const Todo = ({ todo, removeTodo, editTodo }) => {
       <Space h="lg"></Space>
 
       <Container>
-        <Button onClick={() => editTodo(todo.id)} color="violet">
-          edit
-        </Button>
+        <Group position="center" spacing="xl">
+          <Button onClick={() => editTodo(todo.id)} color="violet">
+            Edit
+          </Button>
+          <Button onClick={() => completedTodo(todo.id)} color="green">
+            Complete
+          </Button>
 
-        {/* <TextInput label="Edit Todo" placeholder="New Task..." size="xs" /> */}
-
-        <Button onClick={() => removeTodo(todo.id)} color="red">
-          delete
-        </Button>
+          <Button onClick={() => removeTodo(todo.id)} color="red">
+            Delete
+          </Button>
+        </Group>
       </Container>
     </Flex>
   );

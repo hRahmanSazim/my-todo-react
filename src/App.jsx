@@ -17,19 +17,25 @@ export default function App() {
     let newtodos = [todo, ...todos];
     setTodos(newtodos);
   };
+  const completedTodo = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
 
   const removeTodo = (id) => {
     let updatedTodos = [...todos].filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
   };
-
   const editTodo = (id) => {
-    const newTask = prompt("Give new todo....");
-    // let editTodo = [...todos].find((id)=>{}, id);
-    // console.log(newTask);
+    const newtodo = prompt("Enter new todo....");
+    setTodos(
+      todos.map((todo) => (todo.id === id ? { ...todo, task: newtodo } : todo))
+    );
   };
 
-  console.log(todos);
   return (
     <Box>
       <Flex direction="column" gap="xl" color="yellow">
@@ -41,6 +47,7 @@ export default function App() {
               key={todo.id}
               removeTodo={removeTodo}
               editTodo={editTodo}
+              completedTodo={completedTodo}
             />
           );
         })}
