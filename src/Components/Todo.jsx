@@ -1,30 +1,28 @@
-import React from "react";
-import { Button, Box } from "@mantine/core";
+import { Text, Flex, Button, Container, Space } from "@mantine/core";
 
-export default function ToDo(props) {
+const Todo = ({ todo, removeTodo, editTodo }) => {
   return (
-    <Box className={props.todo.completed ? "todo-row completed" : "todo-row"}>
-      <Box>{props.todo.task}</Box>
-      <Button
-        className="done-btn"
-        color="teal"
-        onClick={() => {
-          props.completeTodo(props.todo.id);
-        }}
-        radius="xl"
-        size="xl"
-      >
-        Done
-      </Button>
-      <Button
-        className="delete-btn"
-        onClick={() => props.removeTodo(props.todo.id)}
-        color="red"
-        radius="xl"
-        size="xl"
-      >
-        Delete
-      </Button>
-    </Box>
+    <Flex direction="row">
+      <Container>
+        <Flex wrap="wrap">
+          <Text>{todo.task}</Text>
+        </Flex>
+      </Container>
+      <Space h="lg"></Space>
+
+      <Container>
+        <Button onClick={() => editTodo(todo.id)} color="violet">
+          edit
+        </Button>
+
+        {/* <TextInput label="Edit Todo" placeholder="New Task..." size="xs" /> */}
+
+        <Button onClick={() => removeTodo(todo.id)} color="red">
+          delete
+        </Button>
+      </Container>
+    </Flex>
   );
-}
+};
+
+export default Todo;

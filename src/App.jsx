@@ -1,25 +1,21 @@
-import TodoForm from "./Components/TodoForm";
-import "./App.css";
+import { Box, Flex } from "@mantine/core";
+import Todowrapper from "./Components/Todowrapper";
+import Todo from "./Components/Todo";
+import { v4 as uuid } from "uuid";
 import { useState } from "react";
-import ToDo from "./Components/Todo";
-import { MantineProvider, Text } from "@mantine/core";
 
-function App() {
+export default function App() {
+  const id = uuid().slice(0, 6);
   const [todos, setTodos] = useState([]);
 
-  const addTodo = (text) => {
-    let id = 1;
-    if (todos.length > 0) {
-      id = todos[0].id + 1;
-    }
+  const addTodo = (value) => {
     let todo = {
-      task: text,
+      task: value,
       id: id,
       completed: false,
     };
-    let newTodos = [todo, ...todos];
-    setTodos(newTodos);
-    console.log(newTodos);
+    let newtodos = [todo, ...todos];
+    setTodos(newtodos);
   };
 
   const removeTodo = (id) => {
@@ -27,36 +23,28 @@ function App() {
     setTodos(updatedTodos);
   };
 
-  const completeTodo = (id) => {
-    let updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        todo.completed = !todo.completed;
-      }
-      return todo;
-    });
-    setTodos(updatedTodos);
+  const editTodo = (id) => {
+    const newTask = prompt("Give new todo....");
+    // let editTodo = [...todos].find((id)=>{}, id);
+    // console.log(newTask);
   };
 
+  console.log(todos);
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
-      <Text>
-        <Text td="underline">MY TODO</Text>
-      </Text>
-      <Text> Add tasks below:</Text>
-
-      <TodoForm addTodo={addTodo} />
-      {todos.map((todo) => {
-        return (
-          <ToDo
-            completeTodo={completeTodo}
-            removeTodo={removeTodo}
-            todo={todo}
-            key={todo.id}
-          />
-        );
-      })}
-    </MantineProvider>
+    <Box>
+      <Flex direction="column" gap="xl" color="yellow">
+        <Todowrapper addTodo={addTodo} />
+        {todos.map((todo) => {
+          return (
+            <Todo
+              todo={todo}
+              key={todo.id}
+              removeTodo={removeTodo}
+              editTodo={editTodo}
+            />
+          );
+        })}
+      </Flex>
+    </Box>
   );
 }
-
-export default App;
